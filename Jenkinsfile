@@ -10,20 +10,38 @@ pipeline {
 
         stage('Restore the project') {
             steps {
-                sh 'dotnet restore'
+                script {
+        if (isUnix()) {
+            sh 'dotnet restore'
+        } else {
+            bat 'dotnet restore'
+        }
+    }
             }
         }
 
 
         stage('Build the project') {
             steps {
-                sh 'dotnet build'
+                script {
+                if (isUnix()) {
+                    sh 'dotnet build'
+                } else {
+                    bat 'dotnet build'
+                }
+                    }
             }
         }
 
         stage('Run tests') {
             steps {
-                sh 'dotnet test'
+                script {
+                if (isUnix()) {
+                    sh 'dotnet test'
+                } else {
+                    bat 'dotnet test'
+                }
+                    }
             }
         }
     }
