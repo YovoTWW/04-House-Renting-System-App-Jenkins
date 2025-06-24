@@ -10,20 +10,20 @@ pipeline {
 
         stage('Restore the project') {
             steps {
-                bat 'dotnet restore'
+                sh 'dotnet restore'
             }
         }
 
 
         stage('Build the project') {
             steps {
-                bat 'dotnet build'
+                sh 'dotnet build'
             }
         }
 
         stage('Run tests') {
             steps {
-                bat 'dotnet test'
+                sh 'dotnet test'
             }
         }
     }
